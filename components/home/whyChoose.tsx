@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
             title: "INNOVATION-LED DEVELOPMENT",
             description:
                 "We don’t follow trends. We analyze, innovate, and craft future-ready digital solutions designed to scale with your business.",
-            image: "/placeholder-1.png",
+            image: "/placeholder-1.webp",
             bg: "bg-[#F3E6D3]",
             text: "text-black",
             className: "-rotate-6 -translate-y-14",
@@ -24,7 +24,7 @@ export default function WhyChooseUs() {
             title: "TRUST-DRIVEN PARTNERSHIPS",
             description:
                 "Our clients trust us with their digital presence because we treat every project as if it were our own. Transparency, reliability, and excellence define our process.",
-            image: "/placeholder-2.png",
+            image: "/placeholder-2.webp",
             bg: "bg-[#6B3F1F]",
             text: "text-white",
             className: "-rotate-12 translate-y-20 -translate-x-10",
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
             title: "MULTI-DISCIPLINARY EXPERTISE",
             description:
                 "Designers, developers, and strategists collaborate seamlessly to deliver cohesive, high-impact results.",
-            image: "/placeholder-3.png",
+            image: "/placeholder-3.webp",
             bg: "bg-[#F57C00]",
             text: "text-black",
             className: "-translate-y-6",
@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
             title: "DETAIL-ORIENTED EXECUTION",
             description:
                 "From the smallest interaction to the overall architecture, every detail is thoughtfully considered.",
-            image: "/placeholder-4.png",
+            image: "/placeholder-4.webp",
             bg: "bg-[#F3E6A8]",
             text: "text-black",
             className: "rotate-[8deg] translate-y-16 -translate-x-10",
@@ -155,7 +155,7 @@ export default function WhyChooseUs() {
 
                     <div className="relative z-20 w-full max-w-[300px] sm:max-w-[460px] md:max-w-[600px] lg:max-w-[760px] -mt-6 sm:-mt-10 md:-mt-16 lg:-mt-24 -mb-12 sm:-mb-20 md:-mb-24 lg:-mb-32">
                         <Image
-                            src="/images/image 16.png"
+                            src="/images/image 16.webp"
                             alt="Fox on skateboard"
                             width={1200}
                             height={900}

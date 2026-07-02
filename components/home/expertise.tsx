@@ -13,7 +13,7 @@ export default function ExpertiseSection() {
             <div className="flex flex-col items-center text-center">
                 <div className="flex flex-col sm:flex-row items-center sm:items-end justify-center gap-4">
                     <img
-                        src="/images/tech_img.png"
+                        src="/images/tech_img.webp"
                         alt="Paco Studios"
                         className="w-[60px] sm:w-[70px] md:w-[90px] h-auto"
                     />
@@ -78,7 +78,7 @@ export default function ExpertiseSection() {
                 </div>
 
                 <Image
-                    src="/images/hr_fox.png"
+                    src="/images/hr_fox.webp"
                     alt="Expertise"
                     width={95}
                     height={95}

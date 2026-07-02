@@ -83,7 +83,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
                         <Link href="/" className="shrink-0">
                             <Image
-                                src="/images/paco 2.png"
+                                src="/images/paco 2.webp"
                                 alt="Paco Studios"
                                 width={140}
                                 height={140}
@@ -103,10 +103,9 @@ export default function Footer() {
                                         tracking-wide relative hover:z-50
                                         shadow-[0_4px_12px_rgba(0,0,0,0.35)]
                                         transition-transform duration-200 hover:scale-105
-                                        ${
-                                            link.label === "Contact Us"
-                                                ? "h-[76px] w-[76px] sm:h-[86px] sm:w-[86px] md:h-[96px] md:w-[96px] text-[9.5px] sm:text-[10.5px] md:text-[11.5px] text-center leading-tight px-2 overflow-visible"
-                                                : "h-[76px] w-[76px] sm:h-[86px] sm:w-[86px] md:h-[96px] md:w-[96px] text-sm sm:text-base md:text-lg overflow-visible"
+                                        ${link.label === "Contact Us"
+                                            ? "h-[76px] w-[76px] sm:h-[86px] sm:w-[86px] md:h-[96px] md:w-[96px] text-[9.5px] sm:text-[10.5px] md:text-[11.5px] text-center leading-tight px-2 overflow-visible"
+                                            : "h-[76px] w-[76px] sm:h-[86px] sm:w-[86px] md:h-[96px] md:w-[96px] text-sm sm:text-base md:text-lg overflow-visible"
                                         }
                                     `}
                                 >
@@ -158,7 +157,7 @@ export default function Footer() {
                                 aria-label="LinkedIn"
                                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110"
                             >
-                                <CiLinkedin  size={18} strokeWidth={2.5} />
+                                <CiLinkedin size={18} strokeWidth={2.5} />
                             </a>
                             <a
                                 href="https://wa.me/61470541254"

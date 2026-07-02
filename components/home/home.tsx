@@ -22,7 +22,7 @@ export default function HomeSection() {
   return (
     <section id="home" className="relative mt-14 sm:mt-18 mx-4 sm:mx-8 md:mx-16 px-4 pb-32 sm:pb-48">
       {/* <Image
-        src="/FOX.png"
+        src="/FOX.webp"
         alt="Fox Background"
         width={807}
         height={1033}

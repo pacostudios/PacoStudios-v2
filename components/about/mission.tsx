@@ -49,7 +49,7 @@ export default function MissionSection() {
                         {/* Mascot - centered relative to the parent text container */}
                         <div className="absolute left-1/2 -translate-x-1/2 top-[80px] z-20 w-[340px] h-[227px]">
                             <Image
-                                src="/images/image 29.png"
+                                src="/images/image 29.webp"
                                 alt="Paco fox on mission"
                                 fill
                                 className="object-contain mix-blend-screen"

@@ -41,7 +41,7 @@ export default function AboutHero() {
 
                     <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] sm:w-[155px] md:w-[200px] aspect-[2/3]">
                         <Image
-                            src="/images/image 28.png"
+                            src="/images/image 28.webp"
                             alt="Paco fox mascot"
                             fill
                             className="object-contain"

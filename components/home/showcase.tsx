@@ -30,7 +30,7 @@ export default function ShowcaseSection() {
         {/* TV Image */}
         <div className="relative w-full max-w-[280px] sm:max-w-[380px] md:max-w-[500px] lg:max-w-[650px]">
           <Image
-            src="/images/branding.png"
+            src="/images/branding.webp"
             alt="Retro TV showcase"
             width={650}
             height={650}

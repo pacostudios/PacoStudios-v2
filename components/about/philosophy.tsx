@@ -49,7 +49,7 @@ export default function PhilosophySection() {
                         {/* Mascot - centered relative to the parent text container */}
                         <div className="absolute left-1/2 -translate-x-1/2 top-[80px] z-20 w-[280px] h-[280px]">
                             <Image
-                                src="/images/image 30.png"
+                                src="/images/image 30.webp"
                                 alt="Paco fox with laptop"
                                 fill
                                 className="object-contain mix-blend-screen"
