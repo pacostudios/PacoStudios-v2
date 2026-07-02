@@ -139,59 +139,38 @@ export default function WhyChooseUs() {
             </div>
 
             {/* EXTRAORDINARY SECTION */}
-            {/* <section className="relative flex flex-col items-center overflow-hidden bg-[#f5f5f5] py-16 md:py-24">
+            <section className="relative flex flex-col items-center bg-white py-12 md:py-16 pb-0 z-10">
                 <h2
-                    className={`${anton.className} z-10 text-center text-black uppercase text-2xl sm:text-3xl md:text-5xl leading-none`}
+                    className={`${anton.className} z-10 text-center text-black uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl leading-none tracking-tight`}
                 >
                     LET&apos;S BUILD SOMETHING
                 </h2>
 
-                <h1
-                    className={`${anton.className} relative z-10 text-center uppercase text-[#d96a00]
-        text-[52px]
-        sm:text-[80px]
-        md:text-[120px]
-        lg:text-[180px]
-        leading-[0.85] tracking-tight`}
-                >
-                    EXTRAORDINARY
-                </h1>
+                <div className="relative w-full max-w-[1400px] flex flex-col items-center px-4">
+                    <h1
+                        className={`${anton.className} relative z-10 text-center uppercase text-[#EB6E00] text-[52px] sm:text-[80px] md:text-[120px] lg:text-[180px] xl:text-[220px] leading-[0.85] tracking-tight`}
+                    >
+                        EXTRAORDINARY
+                    </h1>
 
-                <div className="relative z-20 mt-4 md:-mt-8">
-                    <div className="absolute bottom-0 right-0 w-[120px] sm:w-[180px] md:w-[260px] lg:w-[320px]">
-                        <img
-                            src="/fox.png"
-                            alt="Fox Character"
-                            className="w-full h-auto object-contain"
-                        />
-                    </div>
-
-                    <div className="relative w-[220px] sm:w-[320px] md:w-[420px] lg:w-[520px]">
-                        <img
-                            src="/skateboard.png"
-                            alt="Skateboard"
-                            className="w-full h-auto object-contain"
+                    <div className="relative z-20 w-full max-w-[300px] sm:max-w-[460px] md:max-w-[600px] lg:max-w-[760px] -mt-6 sm:-mt-10 md:-mt-16 lg:-mt-24 -mb-12 sm:-mb-20 md:-mb-24 lg:-mb-32">
+                        <Image
+                            src="/images/image 16.png"
+                            alt="Fox on skateboard"
+                            width={1200}
+                            height={900}
+                            className="w-full h-auto object-contain mix-blend-screen"
+                            priority
                         />
 
                         <button
-                            className="
-              absolute left-1/2 top-1/2
-              -translate-x-1/2 -translate-y-1/2
-              rounded-full
-              bg-[#f57c00]
-              px-4 py-2 md:px-6 md:py-3
-              text-xs md:text-lg
-              font-bold text-white
-              shadow-lg
-              transition-transform
-              hover:scale-105
-            "
+                            className={`${anton.className} absolute left-[48.5%] top-[55%] sm:left-[47.5%] sm:top-[56%] md:left-[47%] md:top-[57%] -translate-x-1/2 -translate-y-1/2 rounded-[100px] bg-[#EB6E00] px-3.5 py-2 sm:px-6 sm:py-2.5 md:px-10 md:py-4 text-[9px] sm:text-sm md:text-base lg:text-lg uppercase text-white shadow-lg transition-all duration-300 hover:bg-black hover:scale-105 whitespace-nowrap`}
                         >
                             Start Your Project
                         </button>
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     );
 }

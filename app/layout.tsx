@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export default function RootLayout({
   children,
@@ -33,7 +34,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
         <Header />
-        {children}
+        <main className="relative z-10 flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

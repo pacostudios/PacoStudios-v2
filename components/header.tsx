@@ -30,15 +30,20 @@ export default function Header() {
         >
           ✕
         </button>
-        {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
+        {[
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: "Work", href: "/#services" },
+          { label: "Contact", href: "/#contact" },
+        ].map((item) => (
           <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
+            key={item.label}
+            href={item.href}
             onClick={() => setMenuOpen(false)}
             className="text-white border-b border-white/10 pb-3 hover:text-[#F47C20] transition-colors"
             style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "20px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase" }}
           >
-            {item}
+            {item.label}
           </a>
         ))}
       </nav>
@@ -82,14 +87,15 @@ export default function Header() {
             <Menu className="text-black" />
           </button>
 
-          <div
+          <a
+            href="/"
             className="flex-1 flex items-center justify-center text-center text-white select-none leading-none pt-1"
             style={{
               fontSize: "46px",
             }}
           >
             PACO
-          </div>
+          </a>
 
           <a
             href="#contact"
