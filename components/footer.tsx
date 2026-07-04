@@ -33,7 +33,7 @@ const navLinks = [
     },
     {
         label: "Work",
-        href: "#work",
+        href: "/work",
         bg: "bg-[#F3E6A8]",
         text: "text-black",
         shape: "rounded-[4px]",
@@ -41,7 +41,7 @@ const navLinks = [
     },
     {
         label: "Contact Us",
-        href: "#contact",
+        href: "/contact",
         bg: "bg-[#F3E6D3]",
         text: "text-black",
         shape: "rounded-full",

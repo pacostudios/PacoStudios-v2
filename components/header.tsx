@@ -33,8 +33,8 @@ export default function Header() {
         {[
           { label: "Home", href: "/" },
           { label: "About", href: "/about" },
-          { label: "Work", href: "/#services" },
-          { label: "Contact", href: "/#contact" },
+          { label: "Work", href: "/work" },
+          { label: "Contact", href: "/contact" },
         ].map((item) => (
           <a
             key={item.label}
@@ -98,7 +98,7 @@ export default function Header() {
           </a>
 
           <a
-            href="#contact"
+            href="/contact"
             className="flex items-center justify-center bg-[#EB6E00] hover:bg-[#d96e18] transition-colors px-4 flex-shrink-0 text-white rounded-[4px]"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",

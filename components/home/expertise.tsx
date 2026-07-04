@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Anton } from "next/font/google";
 
 const anton = Anton({
@@ -147,7 +148,8 @@ export default function ExpertiseSection() {
                     </div>
 
                     {/* Button */}
-                    <button
+                    <Link
+                        href="/about#services"
                         className={`${anton.className}
                         mt-16 md:mt-24
                         w-full
@@ -172,7 +174,7 @@ export default function ExpertiseSection() {
                         duration-300`}
                     >
                         VIEW ALL SERVICE
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

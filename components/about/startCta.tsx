@@ -1,5 +1,6 @@
 import { Anton } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 const anton = Anton({
     weight: "400",
@@ -40,11 +41,12 @@ export default function StartCta() {
                     />
 
                     {/* Button */}
-                    <button
-                        className={`${anton.className} relative z-10 h-[72px] w-full rounded-[100px] border-[3px] border-[#B5B5B5] bg-[#EB6E00] text-[clamp(28px,8vw,56px)] uppercase leading-none text-white shadow-[6px_6px_0px_0px_#B5B5B5] rotate-[6deg] transition-all duration-300 hover:bg-black hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0px_0px_#B5B5B5] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none sm:h-[80px] md:h-[90px] cursor-pointer`}
+                    <Link
+                        href="/contact"
+                        className={`${anton.className} relative z-10 flex h-[72px] w-full items-center justify-center rounded-[100px] border-[3px] border-[#B5B5B5] bg-[#EB6E00] text-[clamp(28px,8vw,56px)] uppercase leading-none text-white shadow-[6px_6px_0px_0px_#B5B5B5] rotate-[6deg] transition-all duration-300 hover:bg-black hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0px_0px_#B5B5B5] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none sm:h-[80px] md:h-[90px] cursor-pointer`}
                     >
                         Start
-                    </button>
+                    </Link>
 
                     {/* Right Arrow */}
                     <Image

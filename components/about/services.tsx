@@ -60,7 +60,7 @@ const services = [
 
 export default function AboutServices() {
     return (
-        <section className="relative px-4 py-16 sm:px-8 md:px-16 md:py-28 overflow-hidden">
+        <section id="services" className="relative scroll-mt-24 px-4 py-16 sm:px-8 md:px-16 md:py-28 overflow-hidden">
             <h2
                 className={`${anton.className} mb-12 text-center text-[clamp(48px,12vw,80px)] uppercase leading-none md:mb-20`}
             >
