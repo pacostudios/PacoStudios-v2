@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Anton } from "next/font/google";
 
 const anton = Anton({
@@ -49,9 +50,13 @@ export default function ShowcaseSection() {
             </p>
 
             {/* Button */}
-            <button
+            <Link
+              href="/work"
               className={`
+                inline-flex
                 shrink-0
+                items-center
+                justify-center
                 rounded-full
                 bg-black
                 px-6 md:px-8
@@ -68,7 +73,7 @@ export default function ShowcaseSection() {
               `}
             >
               VIEW OUR WORKS
-            </button>
+            </Link>
           </div>
         </div>
       </div>

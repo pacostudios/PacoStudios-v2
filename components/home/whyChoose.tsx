@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Anton } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";
 
@@ -163,11 +164,12 @@ export default function WhyChooseUs() {
                             priority
                         />
 
-                        <button
-                            className={`${anton.className} absolute left-[48.5%] top-[55%] sm:left-[47.5%] sm:top-[56%] md:left-[47%] md:top-[57%] -translate-x-1/2 -translate-y-1/2 rounded-[100px] bg-[#EB6E00] px-3.5 py-2 sm:px-6 sm:py-2.5 md:px-10 md:py-4 text-[9px] sm:text-sm md:text-base lg:text-lg uppercase text-white shadow-lg transition-all duration-300 hover:bg-black hover:scale-105 whitespace-nowrap`}
+                        <Link
+                            href="/contact"
+                            className={`${anton.className} absolute left-[48.5%] top-[55%] sm:left-[47.5%] sm:top-[56%] md:left-[47%] md:top-[57%] -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-[100px] bg-[#EB6E00] px-3.5 py-2 sm:px-6 sm:py-2.5 md:px-10 md:py-4 text-[9px] sm:text-sm md:text-base lg:text-lg uppercase text-white shadow-lg transition-all duration-300 hover:bg-black hover:scale-105 whitespace-nowrap`}
                         >
                             Start Your Project
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section>
