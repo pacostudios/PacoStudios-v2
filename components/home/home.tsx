@@ -60,7 +60,7 @@ export default function HomeSection() {
         </Link>
       </div>
 
-      <div className="absolute bottom-[-20px] sm:bottom-[20px] left-[-10vw] right-[-10vw] z-20 -rotate-[10deg] bg-[#EB6E00] py-[13px] overflow-hidden">
+      <div className="absolute bottom-[-20px] sm:bottom-[20px] left-1/2 w-screen -translate-x-1/2 z-20 -rotate-[10deg] bg-[#EB6E00] py-[13px] overflow-hidden">
 
         {/* Track */}
         <div className="flex w-max animate-[tickerScroll_120s_linear_infinite]">

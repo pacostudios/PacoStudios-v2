@@ -104,7 +104,7 @@ export default function ExpertiseSection() {
                 <div className="flex flex-col items-center py-16 md:py-32 overflow-hidden">
                     {/* UX/UI */}
                     <div
-                        className={`${anton.className} bg-[#FFECA6] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] ml-4 md:ml-24 max-w-[95vw] text-center`}
+                        className={`${anton.className} relative bg-[#FFECA6] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] ml-4 md:ml-24 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
                     >
                         <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-black">
                             UX/UI Design
@@ -113,7 +113,7 @@ export default function ExpertiseSection() {
 
                     {/* Web Development */}
                     <div
-                        className={`${anton.className} bg-[#673C20] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[0.2deg] md:-ml-16 -mt-2 max-w-[95vw] text-center`}
+                        className={`${anton.className} relative bg-[#673C20] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[0.2deg] md:-ml-16 -mt-2 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
                     >
                         <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F2ECE6]">
                             Web Development
@@ -122,7 +122,7 @@ export default function ExpertiseSection() {
 
                     {/* 3D Development */}
                     <div
-                        className={`${anton.className} bg-[#FFE9D1] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[0.3deg] md:ml-6 -mt-1 max-w-[95vw] text-center`}
+                        className={`${anton.className} relative bg-[#FFE9D1] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[0.3deg] md:ml-6 -mt-1 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
                     >
                         <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F07800]">
                             3D Development
@@ -131,7 +131,7 @@ export default function ExpertiseSection() {
 
                     {/* Branding */}
                     <div
-                        className={`${anton.className} bg-[#EB6E00] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[3deg] -mt-1 max-w-[95vw] text-center`}
+                        className={`${anton.className} relative bg-[#EB6E00] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[3deg] -mt-1 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
                     >
                         <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-black">
                             Branding
@@ -140,7 +140,7 @@ export default function ExpertiseSection() {
 
                     {/* Chat Bot */}
                     <div
-                        className={`${anton.className} bg-[#1E1E1E] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] md:-ml-8 max-w-[95vw] text-center`}
+                        className={`${anton.className} relative bg-[#1E1E1E] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] md:-ml-8 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
                     >
                         <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F2F0EC]">
                             Chat Bot Solution
