@@ -52,6 +52,7 @@ export default function MissionSection() {
                                 src="/images/image 29.webp"
                                 alt="Paco fox on mission"
                                 fill
+                                sizes="340px"
                                 className="object-contain mix-blend-screen"
                                 priority
                             />

@@ -33,8 +33,8 @@ export default function ShowcaseSection() {
           <Image
             src="/images/branding.webp"
             alt="Retro TV showcase"
-            width={650}
-            height={650}
+            width={2362}
+            height={2286}
             className="w-full h-auto object-contain"
             priority
           />

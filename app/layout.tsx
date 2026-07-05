@@ -68,9 +68,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${anton.variable} ${inter.variable} h-full overflow-x-hidden`}
+      data-scroll-behavior="smooth"
+      className={`${anton.variable} ${inter.variable} h-full overflow-x-clip`}
     >
-      <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
+      <body className="min-h-full flex flex-col font-sans overflow-x-clip">
         <Header />
         <main className="relative z-10 flex-1">{children}</main>
         <Footer />

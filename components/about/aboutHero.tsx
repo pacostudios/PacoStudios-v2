@@ -44,6 +44,7 @@ export default function AboutHero() {
                             src="/images/image 28.webp"
                             alt="Paco fox mascot"
                             fill
+                            sizes="(min-width: 768px) 200px, (min-width: 640px) 155px, 110px"
                             className="object-contain"
                             priority
                         />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { Anton } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";
 
@@ -50,64 +51,175 @@ export default function WhyChooseUs() {
         },
     ];
 
+    const PER_CARD_SCROLL_PX = 420;
+
+    const pinWrapperRef = useRef<HTMLDivElement | null>(null);
+    const stickyBoxRef = useRef<HTMLDivElement | null>(null);
+    const trackRef = useRef<HTMLDivElement | null>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        const wrapper = pinWrapperRef.current;
+        const stickyBox = stickyBoxRef.current;
+        if (!wrapper || !stickyBox) return;
+
+        const totalSlack = (cards.length - 1) * PER_CARD_SCROLL_PX;
+
+        function setWrapperHeight() {
+            if (!wrapper || !stickyBox) return;
+            wrapper.style.height = `${stickyBox.getBoundingClientRect().height + totalSlack}px`;
+        }
+
+        setWrapperHeight();
+        window.addEventListener("resize", setWrapperHeight);
+
+        let frameId: number;
+        let lastIndex = -1;
+
+        function update() {
+            const track = trackRef.current;
+            if (wrapper && track) {
+                const rect = wrapper.getBoundingClientRect();
+                const scrolled = -rect.top;
+                const progress = totalSlack > 0 ? Math.min(Math.max(scrolled / totalSlack, 0), 1) : 0;
+
+                track.style.transform = `translateX(-${progress * (cards.length - 1) * 100}%)`;
+
+                const index = Math.round(progress * (cards.length - 1));
+                if (index !== lastIndex) {
+                    lastIndex = index;
+                    setActiveIndex(index);
+                }
+            }
+            frameId = requestAnimationFrame(update);
+        }
+
+        frameId = requestAnimationFrame(update);
+        return () => {
+            cancelAnimationFrame(frameId);
+            window.removeEventListener("resize", setWrapperHeight);
+        };
+    }, [cards.length]);
+
+    const backgroundTypography = (
+        <div className="flex h-full flex-col justify-center">
+            {Array.from({ length: 9 }).map((_, i) => {
+                const isOrange = i % 2 === 0;
+
+                return (
+                    <div
+                        key={i}
+                        className={`whitespace-nowrap leading-none ${isOrange
+                            ? `${anton.className} uppercase text-[#F57C00]`
+                            : "italic text-black"
+                            }`}
+                    >
+                        <span
+                            className={`${isOrange
+                                ? "text-[60px] md:text-[90px] lg:text-[110px]"
+                                : "text-[35px] md:text-[50px] lg:text-[60px]"
+                                }`}
+                        >
+                            WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS
+                        </span>
+                    </div>
+                );
+            })}
+        </div>
+    );
+
     return (
         <>
             {/* WHY CHOOSE US */}
-            <section className="relative w-full overflow-hidden">
-                {/* Background Typography */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="flex h-full flex-col justify-center">
-                        {Array.from({ length: 9 }).map((_, i) => {
-                            const isOrange = i % 2 === 0;
+            <section className="relative w-full">
+                {/* Background Typography — sm and up only; on mobile the pinned wrapper
+                    below is much taller than a viewport, so this would render off-screen */}
+                <div className="absolute inset-0 hidden overflow-hidden pointer-events-none sm:block">
+                    {backgroundTypography}
+                </div>
 
-                            return (
-                                <div
-                                    key={i}
-                                    className={`whitespace-nowrap leading-none ${isOrange
-                                        ? `${anton.className} uppercase text-[#F57C00]`
-                                        : "italic text-black"
-                                        }`}
-                                >
-                                    <span
-                                        className={`${isOrange
-                                            ? "text-[60px] md:text-[90px] lg:text-[110px]"
-                                            : "text-[35px] md:text-[50px] lg:text-[60px]"
-                                            }`}
-                                    >
-                                        WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS
-                                    </span>
+                {/* Cards — mobile: pinned section, vertical scroll drives the carousel
+                    horizontally until the last card, then scrolling resumes normally */}
+                <div ref={pinWrapperRef} className="relative sm:hidden">
+                    <div ref={stickyBoxRef} className="sticky top-0 h-screen relative overflow-hidden">
+                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                            {backgroundTypography}
+                        </div>
+
+                        <div className="relative z-10 flex h-full flex-col justify-center pt-16">
+                            <div className="overflow-hidden">
+                                <div ref={trackRef} className="flex">
+                                    {cards.map((card, index) => (
+                                        <div key={index} className="w-full shrink-0 px-4">
+                                            <div className="overflow-hidden border-[6px] border-[#1A1A1A] bg-white shadow-2xl">
+                                                <div className="relative h-[220px] bg-[#f7f7f7]">
+                                                    <Image
+                                                        src={card.image}
+                                                        alt={card.title}
+                                                        fill
+                                                        sizes="100vw"
+                                                        priority={index === 0}
+                                                        className="object-cover"
+                                                    />
+                                                </div>
+
+                                                <div className={`${card.bg} ${card.text} p-4`}>
+                                                    <h3
+                                                        className={`${anton.className} mb-2 text-[16px] uppercase leading-tight`}
+                                                    >
+                                                        {card.title}
+                                                    </h3>
+
+                                                    <p className="text-sm leading-relaxed">
+                                                        {card.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            );
-                        })}
+                            </div>
+
+                            <div className="mt-6 flex justify-center gap-2 rounded-full bg-white/90 px-3 py-2 w-fit mx-auto shadow-sm">
+                                {cards.map((_, index) => (
+                                    <span
+                                        key={index}
+                                        className={`h-2 w-2 rounded-full transition-colors ${index === activeIndex ? "bg-[#EB6E00]" : "bg-black/20"
+                                            }`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* Cards */}
-                <div className="relative z-10 flex justify-center px-4 pt-16 md:pt-24">
-                    <div className="flex items-center justify-center -space-x-8 md:-space-x-12 lg:-space-x-16">
+                {/* Cards — sm and up: fanned overlapping row */}
+                <div className="relative z-10 hidden justify-center px-4 pt-16 sm:flex md:pt-24">
+                    <div className="flex items-center justify-center sm:-space-x-8 md:-space-x-12 lg:-space-x-16">
                         {cards.map((card, index) => (
                             <div
                                 key={index}
-                                className={`relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${card.className}`}
+                                className={`relative w-[220px] md:w-[260px] lg:w-[300px] ${card.className}`}
                             >
                                 <div className="overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white shadow-2xl">
-                                    <div className="relative h-[140px] sm:h-[180px] md:h-[220px] lg:h-[260px] bg-[#f7f7f7]">
+                                    <div className="relative h-[180px] md:h-[220px] lg:h-[260px] bg-[#f7f7f7]">
                                         <Image
                                             src={card.image}
                                             alt={card.title}
                                             fill
+                                            sizes="(min-width: 1024px) 300px, (min-width: 768px) 260px, 220px"
                                             className="object-cover"
                                         />
                                     </div>
 
                                     <div className={`${card.bg} ${card.text} p-3 md:p-4`}>
                                         <h3
-                                            className={`${anton.className} mb-2 text-[12px] uppercase leading-tight sm:text-[14px] md:text-[18px]`}
+                                            className={`${anton.className} mb-2 text-[14px] uppercase leading-tight md:text-[18px]`}
                                         >
                                             {card.title}
                                         </h3>
 
-                                        <p className="text-[10px] sm:text-xs md:text-sm leading-relaxed">
+                                        <p className="text-xs md:text-sm leading-relaxed">
                                             {card.description}
                                         </p>
                                     </div>
@@ -118,7 +230,7 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Space below cards */}
-                <div className="h-32 md:h-40" />
+                <div className="sm:h-32 md:h-40" />
             </section>
 
             {/* ARROW BUTTON */}
@@ -158,8 +270,8 @@ export default function WhyChooseUs() {
                         <Image
                             src="/images/image 16.webp"
                             alt="Fox on skateboard"
-                            width={1200}
-                            height={900}
+                            width={991}
+                            height={661}
                             className="w-full h-auto object-contain mix-blend-screen"
                             priority
                         />

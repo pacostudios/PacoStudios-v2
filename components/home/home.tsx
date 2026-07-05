@@ -29,7 +29,7 @@ export default function HomeSection() {
       </p>
 
       <div className="relative flex flex-col leading-none w-full">
-        <h1 className={`${anton.className} text-[clamp(60px,18vw,250px)] uppercase`}>
+        <h1 className={`${anton.className} text-[clamp(74px,20vw,250px)] sm:text-[clamp(60px,18vw,250px)] uppercase`}>
           Design
         </h1>
         <Image
@@ -40,7 +40,7 @@ export default function HomeSection() {
           priority
           className="absolute z-20 pointer-events-none object-contain left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[140px] sm:h-[220px] md:h-[300px] lg:h-[360px] w-auto"
         />
-        <h1 className={`${anton.className} text-[clamp(60px,18vw,250px)] uppercase text-right`}>
+        <h1 className={`${anton.className} text-[clamp(74px,20vw,250px)] sm:text-[clamp(60px,18vw,250px)] uppercase text-right`}>
           Agency
         </h1>
       </div>

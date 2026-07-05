@@ -52,6 +52,7 @@ export default function PhilosophySection() {
                                 src="/images/image 30.webp"
                                 alt="Paco fox with laptop"
                                 fill
+                                sizes="280px"
                                 className="object-contain mix-blend-screen"
                                 priority
                             />
