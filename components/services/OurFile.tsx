@@ -72,13 +72,13 @@ export default function OurServicesList() {
                                         className="w-full overflow-hidden whitespace-nowrap leading-none py-1"
                                     >
                                         <div
-                                            className={`flex w-max uppercase ${rowScrollClass}`}
+                                            className={`flex w-[200vw] uppercase ${rowScrollClass}`}
                                         >
                                             {/* Two identical tracks for a perfectly seamless translateX(-50%) loop */}
                                             {Array.from({ length: 2 }).map((_, trackIndex) => (
-                                                <div key={trackIndex} className={`flex items-center shrink-0 ${anton.className} text-[6vw] md:text-[4vw] tracking-wider`}>
+                                                <div key={trackIndex} className={`flex items-center justify-around shrink-0 w-[100vw] ${anton.className} text-[6vw] md:text-[4vw] tracking-wider`}>
                                                     {Array.from({ length: repeatsCount }).map((_, textIndex) => (
-                                                        <span key={textIndex} className="mr-8">
+                                                        <span key={textIndex}>
                                                             {service.watermarkText}
                                                         </span>
                                                     ))}
