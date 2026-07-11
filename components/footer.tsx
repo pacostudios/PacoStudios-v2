@@ -33,7 +33,7 @@ const navLinks = [
     },
     {
         label: "Work",
-        href: "/work",
+        href: "/services",
         bg: "bg-[#F3E6A8]",
         text: "text-black",
         shape: "rounded-[4px]",
