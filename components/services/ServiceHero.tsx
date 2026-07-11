@@ -33,6 +33,7 @@ export default function ServiceHero() {
                                     src="/images/FOX_SERVICE.webp"
                                     alt="Fox character"
                                     fill
+                                    sizes="(max-width: 768px) 150px, 360px"
                                     className="object-contain"
                                     priority
                                 />

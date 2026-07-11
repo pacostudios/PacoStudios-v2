@@ -157,7 +157,7 @@ export default function WhyChooseUs() {
                                                         src={card.image}
                                                         alt={card.title}
                                                         fill
-                                                        sizes="100vw"
+                                                        sizes="(max-width: 640px) 100vw, 300px"
                                                         priority={index === 0}
                                                         className="object-cover"
                                                     />

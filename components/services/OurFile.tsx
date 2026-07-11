@@ -23,8 +23,8 @@ const SERVICES_DATA: ServiceItem[] = [
         title: "ARABIAN SKY TRANSPORT",
         watermarkText: "ARABIAN SKY TRANSPORT",
         bgColor: "#E51D1D", // Vibrant Red
-        textColor: "#FFFFFF",
-        image: "/images/placeholder.png",
+        textColor: "#2400f3",
+        image: "/images/arabiansky.webp",
     },
     {
         id: "poornaya",
@@ -32,7 +32,7 @@ const SERVICES_DATA: ServiceItem[] = [
         watermarkText: "POORNAYA",
         bgColor: "#7CB342", // Vibrant Green
         textColor: "#FFFFFF",
-        image: "/images/placeholder.png",
+        image: "/images/poornnaya.webp",
     },
     {
         id: "loory-go",
@@ -40,31 +40,14 @@ const SERVICES_DATA: ServiceItem[] = [
         watermarkText: "LOORY GO",
         bgColor: "#0D47A1", // Vibrant Blue
         textColor: "#FFFFFF",
-        image: "/images/placeholder.png",
+        image: "/images/lorrygo.webp",
     },
 ];
 
 export default function OurServicesList() {
     return (
         <section className="relative w-full flex flex-col select-none">
-            {/* Custom Infinite Scroll Animations */}
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                @keyframes scrollLeft {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-33.333%); }
-                }
-                @keyframes scrollRight {
-                    0% { transform: translateX(-33.333%); }
-                    100% { transform: translateX(0); }
-                }
-                .animate-scroll-left {
-                    animation: scrollLeft 40s linear infinite;
-                }
-                .animate-scroll-right {
-                    animation: scrollRight 40s linear infinite;
-                }
-            `}} />
+
 
             {SERVICES_DATA.map((service, index) => {
                 // Determine direction based on index
@@ -80,6 +63,8 @@ export default function OurServicesList() {
                         <div className="absolute inset-0 flex flex-col justify-between py-4 opacity-[0.12] pointer-events-none z-0">
                             {Array.from({ length: 8 }).map((_, rowIndex) => {
                                 const rowScrollClass = rowIndex % 2 === 0 ? "animate-scroll-left" : "animate-scroll-right";
+                                // Dynamically adjust number of repeats inside one track to avoid exceeding browser GPU limits for long titles
+                                const repeatsCount = service.watermarkText.length > 15 ? 4 : 8;
 
                                 return (
                                     <div
@@ -87,14 +72,17 @@ export default function OurServicesList() {
                                         className="w-full overflow-hidden whitespace-nowrap leading-none py-1"
                                     >
                                         <div
-                                            className={`inline-block ${anton.className} text-[6vw] md:text-[4vw] tracking-wider uppercase ${rowScrollClass}`}
-                                            style={{ minWidth: "300%" }}
+                                            className={`flex w-max uppercase ${rowScrollClass}`}
                                         >
-                                            {/* Repeating text to fill the scrolling width */}
-                                            {Array.from({ length: 15 }).map((_, textIndex) => (
-                                                <span key={textIndex} className="mr-8">
-                                                    {service.watermarkText}
-                                                </span>
+                                            {/* Two identical tracks for a perfectly seamless translateX(-50%) loop */}
+                                            {Array.from({ length: 2 }).map((_, trackIndex) => (
+                                                <div key={trackIndex} className={`flex items-center shrink-0 ${anton.className} text-[6vw] md:text-[4vw] tracking-wider`}>
+                                                    {Array.from({ length: repeatsCount }).map((_, textIndex) => (
+                                                        <span key={textIndex} className="mr-8">
+                                                            {service.watermarkText}
+                                                        </span>
+                                                    ))}
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
