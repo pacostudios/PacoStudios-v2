@@ -182,9 +182,9 @@ export default function Footer() {
                         <span>2026 Made In Paco Studio</span>
                     </div>
 
-                    <div className="relative mt-6 md:mt-8 h-[clamp(80px,18vw,160px)] overflow-hidden">
+                    <div className="relative mt-6 md:mt-8 w-full flex justify-center overflow-hidden pb-4 md:pb-8">
                         <h2
-                            className={`${anton.className} uppercase leading-[0.8] tracking-tighter text-[clamp(55px,17vw,220px)] translate-y-[8%]`}
+                            className={`${anton.className} uppercase leading-none tracking-tighter text-[clamp(28px,8.5vw,180px)] whitespace-nowrap`}
                         >
                             <span className="text-white">LET&apos;S </span>
                             <span className="text-[#EB6E00]">WORK </span>
