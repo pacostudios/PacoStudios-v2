@@ -4,6 +4,13 @@ import { Menu, X } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { Anton } from "next/font/google";
+
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,17 +64,17 @@ export default function Header() {
   return (
     <header className='fixed top-0 left-0 w-full z-50 flex flex-col items-center pt-2'>
       {/* ── Main Header Bar ── */}
-      <div className='flex items-center justify-center bg-black w-[95%] max-w-[500px] p-2 rounded-[8px] relative z-20 shadow-xl'>
+      <div className='flex items-center justify-center bg-black w-[95%] max-w-[500px] p-2 rounded relative z-20 shadow-xl'>
         <div className='flex justify-between items-center w-full gap-2'>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label='Toggle menu'
-            className='flex items-center justify-center gap-1 bg-[#EB6E00] hover:bg-[#d96e18] transition-colors px-3 py-[6px] flex-shrink-0 rounded-[4px] text-black font-bold uppercase h-full'
+            className='flex items-center justify-center gap-1 bg-[#EB6E00] hover:bg-[#d96e18] transition-colors px-3 py-[6px] flex-shrink-0 rounded text-black font-bold uppercase h-full'
           >
             {menuOpen ? (
               <>
-                <X size={20} strokeWidth={3} />
-                <span className='hidden sm:inline-block'>Close</span>
+                <X size={24} strokeWidth={3} />
+                {/* <span className='hidden sm:inline-block'>Close</span> */}
               </>
             ) : (
               <Menu size={24} strokeWidth={3} />
@@ -76,7 +83,7 @@ export default function Header() {
 
           <a
             href='/'
-            className='flex-1 flex items-center justify-center text-center text-white select-none leading-none'
+            className={`${anton.className} flex-1 flex items-center justify-center text-center text-white select-none leading-none`}
             style={{
               fontSize: '40px',
             }}
@@ -86,12 +93,7 @@ export default function Header() {
 
           <a
             href='/contact'
-            className='flex items-center justify-center bg-[#EB6E00] hover:bg-[#d96e18] transition-colors px-4 py-[6px] flex-shrink-0 text-black rounded-[4px] uppercase h-full'
-            style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: '18px',
-              fontWeight: 700,
-            }}
+            className='text-lg font-semibold flex items-center justify-center bg-[#EB6E00] hover:bg-[#d96e18] transition-colors px-4 py-[6px] flex-shrink-0 text-black rounded uppercase h-full'
           >
             Contact Us
           </a>
@@ -101,7 +103,7 @@ export default function Header() {
       {/* ── Expandable Dropdown Div ── */}
       <div
         ref={menuRef}
-        className='bg-black w-[95%] max-w-[600px] mt-2 rounded-[12px] p-4 md:p-6 shadow-2xl relative z-10 overflow-hidden border border-white/10'
+        className='bg-black w-[95%] max-w-[600px] mt-2 rounded p-4 md:p-6 shadow-2xl relative z-10 overflow-hidden border border-white/10'
       >
         <div className='flex md:flex-row flex-col gap-6 md:gap-8'>
           {/* Left Side: Navigation Links */}
@@ -115,7 +117,7 @@ export default function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className='menu-btn bg-[#EB6E00] hover:bg-[#d96e18] text-black text-center py-3 rounded-[6px] transition-colors font-black uppercase tracking-wide text-xl shadow-[inset_0_-3px_0_rgba(0,0,0,0.2)]'
+                className='menu-btn bg-[#EB6E00] hover:bg-[#d96e18] text-black text-center py-3 rounded-[6px] transition-colors font-black uppercase text-xl shadow-[inset_0_-3px_0_rgba(0,0,0,0.2)]'
               >
                 {item.label}
               </a>

@@ -1,6 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Anton } from "next/font/google";
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+import ClipPathTitle from '../ClipPathTitle';
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const anton = Anton({
     weight: "400",
@@ -8,6 +20,37 @@ const anton = Anton({
 });
 
 export default function ExpertiseSection() {
+    useGSAP((): void => {
+        const revealTl: gsap.core.Timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.expertise-section-cards',
+                start: 'top 60%',
+                end: 'top top',
+                scrub: 1.5,
+            },
+        });
+
+        const items = [
+            '.first-title',
+            '.second-title',
+            '.third-title',
+            '.fourth-title',
+            '.fifth-title'
+        ];
+
+        items.forEach((item) => {
+            revealTl.to(
+                `.expertise-section-cards ${item}`,
+                {
+                    duration: 1,
+                    opacity: 1,
+                    clipPath: 'polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)',
+                    ease: 'circ.out',
+                }
+            );
+        });
+    });
+
     return (
         <section className="relative w-full mt-20 md:mt-40 px-4">
             {/* Intro Section */}
@@ -93,7 +136,7 @@ export default function ExpertiseSection() {
             </div>
 
             {/* Expertise Section */}
-            <div className="mt-20 md:mt-40">
+            <div className="mt-20 md:mt-40 expertise-section-cards">
                 <h2
                     className={`${anton.className} mb-8 text-[clamp(3rem,10vw,8rem)] font-bold text-center`}
                 >
@@ -101,56 +144,66 @@ export default function ExpertiseSection() {
                     <span className="text-black"> EXPERTISE</span>
                 </h2>
 
-                <div className="flex flex-col items-center py-16 md:py-32 overflow-hidden">
-                    {/* UX/UI */}
-                    <div
-                        className={`${anton.className} relative bg-[#FFECA6] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] ml-4 md:ml-24 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
-                    >
-                        <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-black">
-                            UX/UI Design
-                        </h3>
-                    </div>
+                <div className={`flex flex-col items-center justify-center min-h-[80vh] md:min-h-dvh gap-0 py-24 ${anton.className}`}>
+                    {/* 1 — UX/UI DESIGN */}
+                    <ClipPathTitle
+                        className='first-title'
+                        wrapperClassName='rotate-[2deg] relative z-10'
+                        title='UX/UI DESIGN'
+                        color='#000000'
+                        bg='#FBECA5'
+                        borderColor='#000000'
+                        fontSize='clamp(2.5rem, 8vw, 8rem)'
+                    />
 
-                    {/* Web Development */}
-                    <div
-                        className={`${anton.className} relative bg-[#673C20] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[0.2deg] md:-ml-16 -mt-2 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
-                    >
-                        <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F2ECE6]">
-                            Web Development
-                        </h3>
-                    </div>
+                    {/* 2 — WEB DEVELOPMENT */}
+                    <ClipPathTitle
+                        className='second-title'
+                        wrapperClassName='-rotate-[0deg] relative z-20 -mt-[4vw] md:-mt-[2vw]'
+                        title='WEB DEVELOPMENT'
+                        color='#F3EAE1'
+                        bg='#714227'
+                        borderColor='#000000'
+                        fontSize='clamp(2.5rem, 8vw, 8rem)'
+                    />
 
-                    {/* 3D Development */}
-                    <div
-                        className={`${anton.className} relative bg-[#FFE9D1] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[0.3deg] md:ml-6 -mt-1 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
-                    >
-                        <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F07800]">
-                            3D Development
-                        </h3>
-                    </div>
+                    {/* 3 — 3D DEVELOPMENT */}
+                    <ClipPathTitle
+                        className='third-title'
+                        wrapperClassName='rotate-[1deg] relative z-10 -mt-[3vw] md:-mt-[1.5vw]'
+                        title='3D DEVELOPMENT'
+                        color='#FF7A00'
+                        bg='#FDE4CE'
+                        borderColor='#000000'
+                        fontSize='clamp(2.5rem, 8vw, 8rem)'
+                    />
 
-                    {/* Branding */}
-                    <div
-                        className={`${anton.className} relative bg-[#EB6E00] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 -rotate-[3deg] -mt-1 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
-                    >
-                        <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-black">
-                            Branding
-                        </h3>
-                    </div>
+                    {/* 4 — BRANDING */}
+                    <ClipPathTitle
+                        className='fourth-title'
+                        wrapperClassName='-rotate-[2deg] relative z-20 -mt-[4vw] md:-mt-[2vw]'
+                        title='BRANDING'
+                        color='#000000'
+                        bg='#E96E01'
+                        borderColor='#000000'
+                        fontSize='clamp(2.5rem, 8vw, 8rem)'
+                    />
 
-                    {/* Chat Bot */}
-                    <div
-                        className={`${anton.className} relative bg-[#1E1E1E] border-[2px] md:border-[3px] border-black px-4 sm:px-8 md:px-12 py-3 md:py-4 rotate-[3deg] md:-ml-8 max-w-[95vw] text-center cursor-pointer transition-all duration-300 hover:z-20 hover:scale-105 hover:rotate-0 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]`}
-                    >
-                        <h3 className="uppercase text-[clamp(2rem,8vw,6rem)] leading-none text-[#F2F0EC]">
-                            Chat Bot Solution
-                        </h3>
-                    </div>
+                    {/* 5 — CHAT BOT SOLUTION */}
+                    <ClipPathTitle
+                        className='fifth-title'
+                        wrapperClassName='rotate-[3deg] relative z-30 -mt-[3vw] md:-mt-[1.5vw]'
+                        title='CHAT BOT SOLUTION'
+                        color='#FFFFFF'
+                        bg='#1E1E1E'
+                        borderColor='#000000'
+                        fontSize='clamp(2.5rem, 8vw, 8rem)'
+                    />
 
                     {/* Button */}
                     <Link
                         href="/about#services"
-                        className={`${anton.className}
+                        className={`
                         mt-16 md:mt-24
                         w-full
                         max-w-[350px]

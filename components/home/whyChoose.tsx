@@ -2,16 +2,26 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Anton } from "next/font/google";
 import { ArrowUpRight } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const anton = Anton({
     weight: "400",
     subsets: ["latin"],
 });
 
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function WhyChooseUs() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const pinBoxRef = useRef<HTMLDivElement>(null);
+
     const cards = [
         {
             title: "INNOVATION-LED DEVELOPMENT",
@@ -51,65 +61,55 @@ export default function WhyChooseUs() {
         },
     ];
 
-    const PER_CARD_SCROLL_PX = 420;
+    useGSAP(() => {
+        // Timeline for background typography horizontal sliding
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top bottom",
+                end: "200% top",
+                scrub: true,
+            },
+        });
 
-    const pinWrapperRef = useRef<HTMLDivElement | null>(null);
-    const stickyBoxRef = useRef<HTMLDivElement | null>(null);
-    const trackRef = useRef<HTMLDivElement | null>(null);
-    const [activeIndex, setActiveIndex] = useState(0);
+        // Alternate text movement directions for the background typography
+        tl.to(".bg-type-row-0", { xPercent: 10 }, 0)
+            .to(".bg-type-row-1", { xPercent: -10 }, 0)
+            .to(".bg-type-row-2", { xPercent: 10 }, 0)
+            .to(".bg-type-row-3", { xPercent: -10 }, 0)
+            .to(".bg-type-row-4", { xPercent: 10 }, 0)
+            .to(".bg-type-row-5", { xPercent: -10 }, 0)
+            .to(".bg-type-row-6", { xPercent: 10 }, 0)
+            .to(".bg-type-row-7", { xPercent: -10 }, 0)
+            .to(".bg-type-row-8", { xPercent: 10 }, 0);
 
-    useEffect(() => {
-        const wrapper = pinWrapperRef.current;
-        const stickyBox = stickyBoxRef.current;
-        if (!wrapper || !stickyBox) return;
+        // Pinning the section and animating cards from bottom
+        const pinTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top top",
+                end: "+=200%", // Pin for longer duration to allow scroll action
+                scrub: 1.5,
+                pin: true,
+            },
+        });
 
-        const totalSlack = (cards.length - 1) * PER_CARD_SCROLL_PX;
-
-        function setWrapperHeight() {
-            if (!wrapper || !stickyBox) return;
-            wrapper.style.height = `${stickyBox.getBoundingClientRect().height + totalSlack}px`;
-        }
-
-        setWrapperHeight();
-        window.addEventListener("resize", setWrapperHeight);
-
-        let frameId: number;
-        let lastIndex = -1;
-
-        function update() {
-            const track = trackRef.current;
-            if (wrapper && track) {
-                const rect = wrapper.getBoundingClientRect();
-                const scrolled = -rect.top;
-                const progress = totalSlack > 0 ? Math.min(Math.max(scrolled / totalSlack, 0), 1) : 0;
-
-                track.style.transform = `translateX(-${progress * (cards.length - 1) * 100}%)`;
-
-                const index = Math.round(progress * (cards.length - 1));
-                if (index !== lastIndex) {
-                    lastIndex = index;
-                    setActiveIndex(index);
-                }
-            }
-            frameId = requestAnimationFrame(update);
-        }
-
-        frameId = requestAnimationFrame(update);
-        return () => {
-            cancelAnimationFrame(frameId);
-            window.removeEventListener("resize", setWrapperHeight);
-        };
-    }, [cards.length]);
+        pinTl.from(".gsap-card", {
+            yPercent: 150,
+            stagger: 0.2,
+            ease: "power1.out",
+        });
+    }, { scope: sectionRef });
 
     const backgroundTypography = (
-        <div className="flex h-full flex-col justify-center">
+        <div className="flex h-full flex-col justify-center gap-2">
             {Array.from({ length: 9 }).map((_, i) => {
                 const isOrange = i % 2 === 0;
 
                 return (
                     <div
                         key={i}
-                        className={`whitespace-nowrap leading-none ${isOrange
+                        className={`bg-type-row-${i} whitespace-nowrap leading-none w-[200vw] -ml-[50vw] ${isOrange
                             ? `${anton.className} uppercase text-[#F57C00]`
                             : "italic text-black"
                             }`}
@@ -120,7 +120,7 @@ export default function WhyChooseUs() {
                                 : "text-[35px] md:text-[50px] lg:text-[60px]"
                                 }`}
                         >
-                            WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS
+                            WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS WHY CHOOSE PACO STUDIOS
                         </span>
                     </div>
                 );
@@ -131,110 +131,50 @@ export default function WhyChooseUs() {
     return (
         <>
             {/* WHY CHOOSE US */}
-            <section className="relative w-full">
-                {/* Background Typography — sm and up only; on mobile the pinned wrapper
-                    below is much taller than a viewport, so this would render off-screen */}
-                <div className="absolute inset-0 hidden overflow-hidden pointer-events-none sm:block">
+            <section ref={sectionRef} className="relative w-full h-screen overflow-hidden bg-white">
+                {/* Background Typography */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 md:opacity-100">
                     {backgroundTypography}
                 </div>
 
-                {/* Cards — mobile: pinned section, vertical scroll drives the carousel
-                    horizontally until the last card, then scrolling resumes normally */}
-                <div ref={pinWrapperRef} className="relative sm:hidden">
-                    <div ref={stickyBoxRef} className="sticky top-0 h-screen relative overflow-hidden">
-                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                            {backgroundTypography}
-                        </div>
-
-                        <div className="relative z-10 flex h-full flex-col justify-center pt-16">
-                            <div className="overflow-hidden">
-                                <div ref={trackRef} className="flex">
-                                    {cards.map((card, index) => (
-                                        <div key={index} className="w-full shrink-0 px-4">
-                                            <div className="overflow-hidden border-[6px] border-[#1A1A1A] bg-white shadow-2xl">
-                                                <div className="relative h-[220px] bg-[#f7f7f7]">
-                                                    <Image
-                                                        src={card.image}
-                                                        alt={card.title}
-                                                        fill
-                                                        sizes="(max-width: 640px) 100vw, 300px"
-                                                        priority={index === 0}
-                                                        className="object-cover"
-                                                    />
-                                                </div>
-
-                                                <div className={`${card.bg} ${card.text} p-4`}>
-                                                    <h3
-                                                        className={`${anton.className} mb-2 text-[16px] uppercase leading-tight`}
-                                                    >
-                                                        {card.title}
-                                                    </h3>
-
-                                                    <p className="text-sm leading-relaxed">
-                                                        {card.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="mt-6 flex justify-center gap-2 rounded-full bg-white/90 px-3 py-2 w-fit mx-auto shadow-sm">
-                                {cards.map((_, index) => (
-                                    <span
-                                        key={index}
-                                        className={`h-2 w-2 rounded-full transition-colors ${index === activeIndex ? "bg-[#EB6E00]" : "bg-black/20"
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Cards — sm and up: fanned overlapping row */}
-                <div className="relative z-10 hidden justify-center px-4 pt-16 sm:flex md:pt-24">
-                    <div className="flex items-center justify-center sm:-space-x-8 md:-space-x-12 lg:-space-x-16">
+                {/* Pin Box for Cards */}
+                <div ref={pinBoxRef} className="relative z-10 flex h-full items-center justify-center px-4">
+                    <div className="flex items-center justify-center -space-x-12 sm:-space-x-8 md:-space-x-12 lg:-space-x-16">
                         {cards.map((card, index) => (
                             <div
                                 key={index}
-                                className={`relative w-[220px] md:w-[260px] lg:w-[300px] ${card.className}`}
+                                className={`gsap-card relative w-[220px] md:w-[260px] lg:w-[300px] ${card.className} shadow-2xl rounded overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white`}
                             >
-                                <div className="overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white shadow-2xl">
-                                    <div className="relative h-[180px] md:h-[220px] lg:h-[260px] bg-[#f7f7f7]">
-                                        <Image
-                                            src={card.image}
-                                            alt={card.title}
-                                            fill
-                                            sizes="(min-width: 1024px) 300px, (min-width: 768px) 260px, 220px"
-                                            className="object-cover"
-                                        />
-                                    </div>
+                                <div className="relative h-[180px] md:h-[220px] lg:h-[260px] bg-[#f7f7f7]">
+                                    <Image
+                                        src={card.image}
+                                        alt={card.title}
+                                        fill
+                                        sizes="(min-width: 1024px) 300px, (min-width: 768px) 260px, 220px"
+                                        className="object-cover"
+                                        priority={index === 0}
+                                    />
+                                </div>
 
-                                    <div className={`${card.bg} ${card.text} p-3 md:p-4`}>
-                                        <h3
-                                            className={`${anton.className} mb-2 text-[14px] uppercase leading-tight md:text-[18px]`}
-                                        >
-                                            {card.title}
-                                        </h3>
+                                <div className={`${card.bg} ${card.text} p-4 md:p-5 h-full`}>
+                                    <h3
+                                        className={`${anton.className} mb-2 md:mb-3 text-[15px] md:text-[18px] lg:text-[20px] uppercase leading-tight`}
+                                    >
+                                        {card.title}
+                                    </h3>
 
-                                        <p className="text-xs md:text-sm leading-relaxed">
-                                            {card.description}
-                                        </p>
-                                    </div>
+                                    <p className="text-xs md:text-sm lg:text-[15px] leading-relaxed opacity-90 pb-4">
+                                        {card.description}
+                                    </p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-
-                {/* Space below cards */}
-                <div className="sm:h-32 md:h-40" />
             </section>
 
             {/* ARROW BUTTON */}
-            <div className="flex justify-center py-10 md:py-16 bg-transparent">
+            <div className="flex justify-center py-10 md:py-16 bg-transparent relative z-20">
                 <button
                     className="
           flex items-center justify-center
@@ -252,7 +192,7 @@ export default function WhyChooseUs() {
             </div>
 
             {/* EXTRAORDINARY SECTION */}
-            <section className="relative flex flex-col items-center bg-white py-12 md:py-16 pb-0 z-10">
+            <section className="relative flex flex-col items-center bg-white py-12 md:py-16 pb-0 z-20">
                 <h2
                     className={`${anton.className} z-10 text-center text-black uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl leading-none tracking-tight`}
                 >

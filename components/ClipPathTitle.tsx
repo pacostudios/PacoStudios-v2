@@ -39,7 +39,7 @@ const ClipPathTitle: FC<ClipPathTitleProps> = ({
               color: color,
               fontSize: fontSize,
             }}
-            className='font-black uppercase tracking-[-0.04em] leading-[1.1] scale-y-[1.1]'
+            className='font-black uppercase leading-[1.1] scale-y-[1.1]'
           >
             {title}
           </h2>
