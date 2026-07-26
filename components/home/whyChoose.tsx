@@ -110,8 +110,8 @@ export default function WhyChooseUs() {
                     <div
                         key={i}
                         className={`bg-type-row-${i} whitespace-nowrap leading-none w-[200vw] -ml-[50vw] ${isOrange
-                            ? `${anton.className} uppercase text-[#F57C00]`
-                            : "italic text-black"
+                            ? `${anton.className} uppercase text-[#F57C00]/60`
+                            : "italic text-black/60"
                             }`}
                     >
                         <span
@@ -143,9 +143,9 @@ export default function WhyChooseUs() {
                         {cards.map((card, index) => (
                             <div
                                 key={index}
-                                className={`gsap-card relative w-[220px] md:w-[260px] lg:w-[300px] ${card.className} shadow-2xl rounded overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white`}
+                                className={`gsap-card relative w-[220px] md:w-[260px] lg:w-[25rem] ${card.className} shadow-2xl rounded overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white`}
                             >
-                                <div className="relative h-[180px] md:h-[220px] lg:h-[260px] bg-[#f7f7f7]">
+                                <div className="relative h-[180px] md:h-[220px] lg:h-[22rem] bg-[#f7f7f7]">
                                     <Image
                                         src={card.image}
                                         alt={card.title}
@@ -218,7 +218,7 @@ export default function WhyChooseUs() {
 
                         <Link
                             href="/contact"
-                            className={`${anton.className} absolute left-[48.5%] top-[55%] sm:left-[47.5%] sm:top-[56%] md:left-[47%] md:top-[57%] -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-[100px] bg-[#EB6E00] px-3.5 py-2 sm:px-6 sm:py-2.5 md:px-10 md:py-4 text-[9px] sm:text-sm md:text-base lg:text-lg uppercase text-white shadow-lg transition-all duration-300 hover:bg-black hover:scale-105 whitespace-nowrap`}
+                            className={`${anton.className} rotate-13 absolute left-[48.5%] top-[55%] sm:left-[47.5%] sm:top-[56%] md:left-[47%] md:top-[50%] -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-[100px] bg-[#EB6E00] px-3.5 py-2 sm:px-6 sm:py-2.5 md:px-10 md:py-4 text-[9px] sm:text-sm md:text-base lg:text-lg uppercase text-white shadow-lg transition-all duration-300 hover:bg-black hover:scale-105 whitespace-nowrap`}
                         >
                             Start Your Project
                         </Link>
