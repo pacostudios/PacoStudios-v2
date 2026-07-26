@@ -143,9 +143,9 @@ export default function WhyChooseUs() {
                         {cards.map((card, index) => (
                             <div
                                 key={index}
-                                className={`gsap-card relative w-[220px] md:w-[260px] lg:w-[25rem] ${card.className} shadow-2xl rounded overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white`}
+                                className={`gsap-card relative w-[220px] md:w-[260px] lg:w-[22rem] ${card.className} shadow-2xl rounded overflow-hidden border-[6px] md:border-[8px] border-[#1A1A1A] bg-white`}
                             >
-                                <div className="relative h-[180px] md:h-[220px] lg:h-[22rem] bg-[#f7f7f7]">
+                                <div className="relative h-[180px] md:h-[220px] lg:h-[18rem] bg-[#f7f7f7]">
                                     <Image
                                         src={card.image}
                                         alt={card.title}

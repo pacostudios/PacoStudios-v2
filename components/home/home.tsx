@@ -38,7 +38,7 @@ export default function HomeSection() {
           width={807}
           height={1034}
           priority
-          className="absolute z-20 pointer-events-none object-contain left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[50rem] w-auto"
+          className="absolute z-20 pointer-events-none object-contain left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[40rem] w-auto"
         />
         <h1 className={`${anton.className} text-[clamp(74px,20vw,250px)] sm:text-[clamp(60px,18vw,250px)] uppercase text-right`}>
           Agency
